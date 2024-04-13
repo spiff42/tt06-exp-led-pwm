@@ -5,7 +5,7 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = project.v ramp_gen.v pwm_chan.v
+PROJECT_SOURCES = tt_um_spiff42_exp_led_pwm.v ramp_gen.v pwm_chan.v
 
 ifneq ($(GATES),yes)
 
