@@ -20,22 +20,22 @@ module ramp_gen (input clk, input reset, output [7:0] ramp);
   always @(ramp_high[7:4])
     begin
       case(ramp_high[7:4])
-        4'd00 : low_limit = 1;
-        4'd01 : low_limit = 6;
-        4'd02 : low_limit = 19;
-        4'd03 : low_limit = 36;
-        4'd04 : low_limit = 60;
-        4'd05 : low_limit = 90;
-        4'd06 : low_limit = 126;
-        4'd07 : low_limit = 168;
-        4'd08 : low_limit = 216;
-        4'd09 : low_limit = 271;
-        4'd10 : low_limit = 313;
-        4'd11 : low_limit = 397;
-        4'd12 : low_limit = 473;
-        4'd13 : low_limit = 545;
-        4'd14 : low_limit = 633;
-        4'd15 : low_limit = 724;
+        4'd00 : low_limit = 1 - 1;
+        4'd01 : low_limit = 6 - 1;
+        4'd02 : low_limit = 19 - 1;
+        4'd03 : low_limit = 36 - 1;
+        4'd04 : low_limit = 60 - 1;
+        4'd05 : low_limit = 90 - 1;
+        4'd06 : low_limit = 126 - 1;
+        4'd07 : low_limit = 168 - 1;
+        4'd08 : low_limit = 216 - 1;
+        4'd09 : low_limit = 271 - 1;
+        4'd10 : low_limit = 313 - 1;
+        4'd11 : low_limit = 397 - 1;
+        4'd12 : low_limit = 473 - 1;
+        4'd13 : low_limit = 545 - 1;
+        4'd14 : low_limit = 633 - 1;
+        4'd15 : low_limit = 724 - 1;
       endcase
     end
 
@@ -45,7 +45,7 @@ module ramp_gen (input clk, input reset, output [7:0] ramp);
         ramp_low <= 0;
         ramp_high <= 0;
       end else begin
-        if (ramp_low + 1 != low_limit)
+        if (ramp_low != low_limit)
           ramp_low <= ramp_low + 1;
         else begin
           ramp_high <= ramp_high + 1;
