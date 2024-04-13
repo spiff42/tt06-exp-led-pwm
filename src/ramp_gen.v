@@ -9,7 +9,7 @@
  *   so fading looks "natural" to the huma eye.
  */
 
-module ramp_gen (input clk, input reset, output [7:0] ramp);
+module ramp_generator (input clk, input rst_n, output [7:0] ramp);
   reg [9:0] ramp_low;
   reg [7:0] ramp_high;
   
@@ -39,9 +39,9 @@ module ramp_gen (input clk, input reset, output [7:0] ramp);
       endcase
     end
 
-  always @(posedge clk or posedge reset)
+  always @(posedge clk or negedge rst_n)
     begin
-      if (reset) begin
+      if (!rst_n) begin
         ramp_low <= 0;
         ramp_high <= 0;
       end else begin

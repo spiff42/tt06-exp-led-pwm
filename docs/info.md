@@ -13,7 +13,8 @@ The LED PWM Controller currently takes 8 bits from ui[7:0] and generates
 a PWM signal on uo[0]. The PWM duty cycle is generated according to an X^3^
 curve, so the "percieved brightness" changes linearly with the DIP switch
 settings. This design means we get the dynamic range of a 16-bit PWM but
-use only 8 bits to specify the desired output.
+use only 8 bits to specify the desired output. With an input clock of 32.7
+MHz, the PWM frequency is 500 Hz.
 
 ## How to test
 
