@@ -25,6 +25,8 @@ module exp_led_pwm_tb ();
         #(25);
         rst_n = 1;
         #(656000);
+        ui_in = 16;
+        #(656000);
         $finish;
     end
 
@@ -38,7 +40,7 @@ module exp_led_pwm_tb ();
         .uio_in(8'h00),
         .uio_out(),
         .uio_oe(),
-        .ena(1'd1),
+        .ena(ena),
         .clk(clk),
         .rst_n(rst_n)
     );

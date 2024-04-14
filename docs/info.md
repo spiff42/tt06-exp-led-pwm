@@ -18,8 +18,8 @@ MHz, the PWM frequency is 500 Hz.
 
 ## How to test
 
-Setting the DIP switches results in changing the brightness of segment A
-(top) on the 7-segment display.
+Play with the DIP-switches to see different segments of the 7-segment LED
+display show different brightnesses.
 
 ## External hardware
 
