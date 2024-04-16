@@ -248,4 +248,3 @@ module i2c_slave #(
     assign wdata = dbyte;
   
   endmodule
-  
