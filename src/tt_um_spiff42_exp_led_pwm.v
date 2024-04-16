@@ -51,7 +51,7 @@ module tt_um_spiff42_exp_led_pwm (
     .scl(uio_in[2]),
 
     // application interface
-    //.rw(i2c_rw),
+    .rw(),
     .addr(i2c_addr),
     .wen(i2c_wen),
     .wdata(i2c_wdata),
@@ -61,10 +61,14 @@ module tt_um_spiff42_exp_led_pwm (
   assign uio_oe[2]  = 1'b0; // SCL is input
   assign uio_out[2] = 1'b0;
 
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n)
-      i2c_control <= 0;
-    else if (i2c_wen) begin
+  always @(negedge rst_n) begin
+    i2c_control <= 0;
+  end
+
+  always @(posedge clk) begin
+    if (!rst_n) begin
+      // Do nothing
+    end else if (i2c_wen) begin
       // I2C write
       if (i2c_addr < 8) begin
         i2c_control <= 1;
