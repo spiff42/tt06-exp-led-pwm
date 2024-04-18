@@ -34,7 +34,7 @@ module tt_um_spiff42_exp_led_pwm (
   pwm_channel pwmch_6 (.value(pwm_val[6]), .ramp(ramp), .ch(uo_out[6]));
   pwm_channel pwmch_7 (.value(pwm_val[7]), .ramp(ramp), .ch(uo_out[7]));
 
-  //wire        i2c_rw;
+  wire        i2c_rw;
   wire [7:0]  i2c_addr;
   wire        i2c_wen;
   wire [7:0]  i2c_wdata;
@@ -51,7 +51,7 @@ module tt_um_spiff42_exp_led_pwm (
     .scl(uio_in[2]),
 
     // application interface
-    .rw(),
+    .rw(i2c_rw),
     .addr(i2c_addr),
     .wen(i2c_wen),
     .wdata(i2c_wdata),
