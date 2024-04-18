@@ -18,7 +18,7 @@ project:
     - "tt_um_spiff42_exp_led_pwm.v"
     - "ramp_gen.v"
     - "pwm_chan.v"
-    - "i2c_slave.v"
+    - "i2c.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
