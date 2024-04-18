@@ -61,13 +61,9 @@ module tt_um_spiff42_exp_led_pwm (
   assign uio_oe[2]  = 1'b0; // SCL is input
   assign uio_out[2] = 1'b0;
 
-  always @(negedge rst_n) begin
-    i2c_control <= 0;
-  end
-
-  always @(posedge clk) begin
+  always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-      // Do nothing
+      i2c_control <= 0;
     end else if (i2c_wen) begin
       // I2C write
       if (i2c_addr < 8) begin
