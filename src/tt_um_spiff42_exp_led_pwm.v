@@ -48,7 +48,7 @@ module tt_um_spiff42_exp_led_pwm (
   assign    uio_oe[2]  = ~scl_out;
   assign    uio_oe[1]  = ~sda_out;
 
-  wire pready;
+  wire      pready = 1'b1;
   reg [7:0] i2c_rdata;
   wire [7:0] i2c_wdata;
   wire [7:0] paddr;
