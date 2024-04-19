@@ -34,11 +34,14 @@ module tt_um_spiff42_exp_led_pwm (
   pwm_channel pwmch_6 (.value(pwm_val[6]), .ramp(ramp), .ch(uo_out[6]));
   pwm_channel pwmch_7 (.value(pwm_val[7]), .ramp(ramp), .ch(uo_out[7]));
 
-  //wire        i2c_rw;
+  // verilator lint_off UNUSEDSIGNAL
+  wire        i2c_rw;
+  wire        i2c_rdata_used;
+  // verilator lint_on UNUSEDSIGNAL
+
   wire [7:0]  i2c_addr;
   wire        i2c_wen;
   wire [7:0]  i2c_wdata;
-  wire        i2c_rdata_used;
   reg  [7:0]  i2c_rdata;
 
   i2c_slave #(
@@ -52,7 +55,7 @@ module tt_um_spiff42_exp_led_pwm (
     .sda_i(uio_in[1]),
     .scl(uio_in[2]),
     // application interface
-    .rw(),
+    .rw(i2c_rw),
     .addr(i2c_addr),
     .wen(i2c_wen),
     .wdata(i2c_wdata),
@@ -89,12 +92,10 @@ module tt_um_spiff42_exp_led_pwm (
     if (i2c_addr < 8) begin
       i2c_rdata = pwm_val[i2c_addr[2:0]];
     end else begin
-      case (i2c_addr[7:0])
-        8'h2A  : i2c_rdata = 8'h53;
-        8'h2B  : i2c_rdata = 8'h70;
-        8'h2C  : i2c_rdata = 8'h69;
-        8'h2D  : i2c_rdata = 8'h66;
-        8'h2E  : i2c_rdata = 8'h66;
+      case (i2c_addr[7:1])
+        7'h43  : i2c_rdata = 8'b01100110;
+        7'h42  : i2c_rdata = (i2c_addr[0]==0) ? 8'h70 : 8'h69;
+        7'h41  : i2c_rdata = (i2c_addr[0]==1) ? 8'h53 : 8'h40;
         default: i2c_rdata = 8'h00;
       endcase
     end
