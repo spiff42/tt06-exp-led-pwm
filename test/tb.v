@@ -22,6 +22,17 @@ module tb ();
   wire [7:0] uio_out;
   wire [7:0] uio_oe;
 
+  reg   scl_tb, sda_tb;
+  wire  scl, sda;
+  assign scl = scl_tb;
+  assign sda = (~uio_oe[1] | uio_out[1]) & sda_tb;
+
+  always_comb
+    begin
+      uio_in[2] = scl;
+      uio_in[1] = sda;
+    end
+
   // Replace tt_um_example with your module name:
   tt_um_spiff42_exp_led_pwm user_project (
 
