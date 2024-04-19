@@ -16,7 +16,7 @@
  * under the License.
  */
 
- module i2c_slave (
+ module i2c_slave_mi (
     input 		clk, reset_b,
     input 		pready,
     input [PDATA_WL-1:0] 	prdata,

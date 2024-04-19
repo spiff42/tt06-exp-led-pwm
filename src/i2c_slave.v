@@ -9,12 +9,12 @@ module i2c_slave #(
     parameter SLAVE_ADDR = 7'b1110000 // 0x70 (0xE0 and 0xE1)
     )
     (
-      input	clk,
+      input	 clk,
       input  rst_n,
       output sda_o,
       output sda_oe,
       input  sda_i,
-      input scl,
+      input  scl,
   
       // application interface
       output reg rw,
@@ -45,7 +45,7 @@ module i2c_slave #(
     // Require three consecutive identical samples to identify a proper edge:
     always @(posedge clk) begin
       scl_d <= {scl_d[2:0], scl};
-        sda_d <= {sda_d[2:0], sda_i};
+      sda_d <= {sda_d[2:0], sda_i};
     end
     assign scl_rise = (scl_d == 4'b0111);
     assign scl_fall = (scl_d == 4'b1000);
@@ -83,7 +83,7 @@ module i2c_slave #(
           
     // This FSM tracks the bus transaction and executes the application R/W commands
     reg [7:0] dbyte;
-      always @(posedge clk) begin
+      always @(posedge clk or negedge rst_n) begin
       reg [3:0] state;
       reg addr_ok;
       reg [3:0] counter;
