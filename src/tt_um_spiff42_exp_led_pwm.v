@@ -88,9 +88,16 @@ module tt_um_spiff42_exp_led_pwm (
   always @(*) begin
     if (i2c_addr < 8) begin
       i2c_rdata = pwm_val[i2c_addr[2:0]];
+    end else begin
+      case (i2c_addr[7:0])
+        8'h2A  : i2c_rdata = 8'h53;
+        8'h2B  : i2c_rdata = 8'h70;
+        8'h2C  : i2c_rdata = 8'h69;
+        8'h2D  : i2c_rdata = 8'h66;
+        8'h2E  : i2c_rdata = 8'h66;
+        default: i2c_rdata = 8'h00;
+      endcase
     end
-    else
-      i2c_rdata = 8'h00;
   end
 
   // All output pins must be assigned. If not used, assign to 0.

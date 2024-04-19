@@ -101,13 +101,13 @@ module i2c_slave #(
       end else begin
         // default assignments
         rdata_used <= 1'b0;
-              wen        <= 1'b0;
+        wen        <= 1'b0;
   
         // restart engine if start or stop was detected
         if (bus_start || bus_stop)
                   state = reset;
         case (state)
-            reset: begin
+          reset: begin
                      pull_sda <= 1'b0;
                      counter  <= 4'd0;
                      dbyte    <= 8'd0;
